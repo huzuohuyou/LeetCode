@@ -3,17 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace 广度搜索
+namespace LeetCode
 {
-    public class TreeNode
+    
+    public class Solution_107: ISolution
     {
-        public int val;
-        public TreeNode left;
-        public TreeNode right;
-        public TreeNode(int x) { val = x; }
-    }
-    public class Solution
-    {
+        public void Test()
+        {
+            var root = new TreeNode(3);
+            var l1 = new TreeNode(9);
+            root.left = l1;
+            var r1 = new TreeNode(20);
+            root.right = r1;
+
+            var r1l = new TreeNode(15);
+            r1.left = r1l;
+            var r1r = new TreeNode(7);
+            r1.right = r1r;
+            var r = new Solution_107().LevelOrderBottom(root);
+
+        }
+
         public IList<IList<int>> LevelOrderBottom(TreeNode root)
         {
             IList<IList<int>> result = new List<IList<int>>();

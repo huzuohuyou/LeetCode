@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "广度搜索", "广度搜索\广度搜索.csproj", "{0B1B70E6-55D9-44C3-9F74-BBF3993E4B1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCode", "广度搜索\LeetCode.csproj", "{0B1B70E6-55D9-44C3-9F74-BBF3993E4B1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
