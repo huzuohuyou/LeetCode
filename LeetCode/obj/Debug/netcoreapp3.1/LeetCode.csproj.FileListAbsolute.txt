@@ -10,3 +10,16 @@ D:\GitHub\LeetCode\广度搜索\obj\Debug\netcoreapp3.1\LeetCode.csproj.CoreComp
 D:\GitHub\LeetCode\广度搜索\obj\Debug\netcoreapp3.1\LeetCode.dll
 D:\GitHub\LeetCode\广度搜索\obj\Debug\netcoreapp3.1\LeetCode.pdb
 D:\GitHub\LeetCode\广度搜索\obj\Debug\netcoreapp3.1\LeetCode.genruntimeconfig.cache
+D:\GitHub\LeetCode\LeetCode\bin\Debug\netcoreapp3.1\LeetCode.exe
+D:\GitHub\LeetCode\LeetCode\bin\Debug\netcoreapp3.1\LeetCode.deps.json
+D:\GitHub\LeetCode\LeetCode\bin\Debug\netcoreapp3.1\LeetCode.runtimeconfig.json
+D:\GitHub\LeetCode\LeetCode\bin\Debug\netcoreapp3.1\LeetCode.runtimeconfig.dev.json
+D:\GitHub\LeetCode\LeetCode\bin\Debug\netcoreapp3.1\LeetCode.dll
+D:\GitHub\LeetCode\LeetCode\bin\Debug\netcoreapp3.1\LeetCode.pdb
+D:\GitHub\LeetCode\LeetCode\obj\Debug\netcoreapp3.1\LeetCode.csprojAssemblyReference.cache
+D:\GitHub\LeetCode\LeetCode\obj\Debug\netcoreapp3.1\LeetCode.AssemblyInfoInputs.cache
+D:\GitHub\LeetCode\LeetCode\obj\Debug\netcoreapp3.1\LeetCode.AssemblyInfo.cs
+D:\GitHub\LeetCode\LeetCode\obj\Debug\netcoreapp3.1\LeetCode.csproj.CoreCompileInputs.cache
+D:\GitHub\LeetCode\LeetCode\obj\Debug\netcoreapp3.1\LeetCode.dll
+D:\GitHub\LeetCode\LeetCode\obj\Debug\netcoreapp3.1\LeetCode.pdb
+D:\GitHub\LeetCode\LeetCode\obj\Debug\netcoreapp3.1\LeetCode.genruntimeconfig.cache
