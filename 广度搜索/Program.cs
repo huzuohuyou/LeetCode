@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace 广度搜索
+namespace LeetCode
 {
     class Program
     {

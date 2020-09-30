@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub\\LeetCode\\广度搜索\\广度搜索.csproj": {}
+    "D:\\GitHub\\LeetCode\\广度搜索\\LeetCode.csproj": {}
   },
   "projects": {
-    "D:\\GitHub\\LeetCode\\广度搜索\\广度搜索.csproj": {
+    "D:\\GitHub\\LeetCode\\广度搜索\\LeetCode.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\LeetCode\\广度搜索\\广度搜索.csproj",
-        "projectName": "广度搜索",
-        "projectPath": "D:\\GitHub\\LeetCode\\广度搜索\\广度搜索.csproj",
+        "projectUniqueName": "D:\\GitHub\\LeetCode\\广度搜索\\LeetCode.csproj",
+        "projectName": "LeetCode",
+        "projectPath": "D:\\GitHub\\LeetCode\\广度搜索\\LeetCode.csproj",
         "packagesPath": "C:\\Users\\吴海龙\\.nuget\\packages\\",
         "outputPath": "D:\\GitHub\\LeetCode\\广度搜索\\obj\\",
         "projectStyle": "PackageReference",
