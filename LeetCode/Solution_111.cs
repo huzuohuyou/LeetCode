@@ -21,9 +21,20 @@ namespace LeetCode
             r1.left = r1l;
             var r1r = new TreeNode(7);
             r1.right = r1r;
-            var r = new Solution_111().MinDepth(root);
+            var r = MinDepth(root);
         }
-
+        public bool IsLeef(TreeNode root)
+        {
+            if (root==null)
+            {
+                return false;
+            }
+            if (root.left == null && root.right == null)
+            {
+                return true;
+            }
+            return false;
+        }
 
         public int MinDepth(TreeNode root)
         {
@@ -38,7 +49,7 @@ namespace LeetCode
             }
             else
             {
-                var depth = 1;
+                var depth = 0;
                 var queue = new Queue();
                 queue.Enqueue(root);
                 while (queue.Count > 0)
@@ -50,42 +61,18 @@ namespace LeetCode
                         var node = (TreeNode)queue.Dequeue();
                         if (IsLeef(node))
                         {
-                            break;
+                            return depth;
                         }
-                        queue.Enqueue(node.left);
-                        queue.Enqueue(node.right);
+                        if (node.left != null)
+                            queue.Enqueue(node.left);
+                        if (node.right != null)
+                            queue.Enqueue(node.right);
                     }
                 }
                 return depth;
             }
 
-            private bool CheckNode(TreeNode root)
-        {
-            if (root == null)
-                return true;
-            else
-            {
-                var isB = Math.Abs(TreeHeight(root.left) - TreeHeight(root.right));
-                if (isB > 1)
-                {
-                    return false;
-                }
-                return true;
-                
-            }
 
-        }
-
-        public bool IsBalanced(TreeNode root)
-        {
-            if (root == null)
-                return true;
-            else
-            {
-                return CheckNode(root)
-                    && IsBalanced(root.right) 
-                    && IsBalanced(root.left) ;
-            }
         }
     }
 }
