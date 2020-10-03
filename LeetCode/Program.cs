@@ -6,7 +6,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            ISolution solution = new Solution_112();
+            ISolution solution = new Solution_113();
             solution.Test();
             Console.WriteLine("Hello World!");
         }
