@@ -45,6 +45,10 @@ namespace LeetCode
                         head = pre;
                         break;
                     }
+                    else
+                    {
+                        return head.next;
+                    }
                     
                 }
                 else
