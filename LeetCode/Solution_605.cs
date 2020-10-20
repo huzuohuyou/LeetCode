@@ -17,14 +17,14 @@ namespace LeetCode
 
         public bool CanPlaceFlowers(int[] flowerbed, int n)
         {
-            int temp = -1,count=0;
+            int temp = 0,count=0;
             for (int i = 0; i < flowerbed.Length; i++)
             {
-                if (i + 1< flowerbed.Length
-                    &&flowerbed[i]==0
+                if (flowerbed[i]==0
                     &&temp==0
-                    && flowerbed[i+1]==0)
+                    && (i + 1== flowerbed.Length?0: flowerbed[i + 1]) ==0)
                 {
+                    flowerbed[i] = 1;
                     count++;
                 }
                 temp = flowerbed[i];
