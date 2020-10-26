@@ -34,11 +34,12 @@ namespace LeetCode
             var a = MaxDepth(root);
         }
 
-        int Deph=0;
+        
         
 
         public int MaxDepth(TreeNode root)
         {
+            int Deph = 0;
             if (root == null)
             {
                 return 0;
