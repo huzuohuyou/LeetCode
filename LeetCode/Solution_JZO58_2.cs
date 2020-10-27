@@ -24,7 +24,7 @@ namespace LeetCode
             {
                 sb.Append(s[i]);
             }
-           var r= sb.ToString(n,s.Length - n + 1);
+           var r= sb.ToString(n,s.Length);
             return r;
         }
     }
