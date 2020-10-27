@@ -26,7 +26,7 @@ namespace LeetCode
                 if (sum==target)
                 {
                     var list = new List<int>();
-                    for (int m = i; m <= j - i + 1; m++)
+                    for (int m = i; m <= j ; m++)
                     {
                         list.Add(m);
                     }
