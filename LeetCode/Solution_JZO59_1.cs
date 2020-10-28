@@ -17,7 +17,7 @@ namespace LeetCode
         }
 
 
-        public int[] MaxSlidingWindow(int[] nums, int k)
+        public double[] TwoSum(int n)
         {
             if (k > nums.Length || nums.Length == 0)
             {
