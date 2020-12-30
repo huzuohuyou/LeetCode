@@ -57,8 +57,8 @@ namespace LeetCode
                 {
                     if (stack.Count>0)
                     {
-                        var s = stack.Pop();
-                        ok = ok && IsPair(s, l);
+                        var ss = stack.Pop();
+                        ok = ok && IsPair(ss, l);
                     }
                     else
                     {

@@ -7,7 +7,7 @@ using System.Text;
 namespace LeetCode
 {
 
-    public class Solution_JZO18 : ISolution
+    public class Solution_JZO20 : ISolution
     {
         public class ListNode
         {

@@ -12,57 +12,25 @@ namespace LeetCode
 
         public void Test()
         {
-            MinStack minStack = new MinStack();
-            minStack.Push(-2);
-            minStack.Push(0);
-            minStack.Push(-3);
-            var c = minStack.Min();
-            minStack.Pop();
-            var a = minStack.Top();
-            var b = minStack.Min();
+            ValidateStackSequences(new int[] { 1,2,3,4,5}, new int[] { 4, 5, 3, 2, 1 });
 
         }
-        public class MinStack
+        public bool ValidateStackSequences(int[] pushed, int[] popped)
         {
-            public Stack<int> A = new Stack<int>();
-            public Stack<int> B = new Stack<int>();
-            /** initialize your data structure here. */
-            public MinStack()
+            Stack<int> stack = new Stack<int>();
+            int i = 0;
+            foreach (int num in pushed)
             {
-
-            }
-
-            public void Push(int x)
-            {
-                A.Push(x);
-                if (B.Count==0||x<=B.Peek())
-                {
-                    B.Push(x);
+                stack.Push(num); // num 入栈
+                while (!(stack.Count()==0) && stack.Peek() == popped[i])
+                { // 循环判断与出栈
+                    stack.Pop();
+                    i++;
                 }
             }
+            return stack.Count() == 0;
 
-            public void Pop()
-            {
-                if (A.Pop().Equals(B.Peek()))
-                {
-                    B.Pop();
-                }
-            }
 
-            public int Top()
-            {
-                
-                return A.Peek();
-            }
-
-            public int Min()
-            {
-                if (B.Count > 0)
-                {
-                    return  B.Peek();
-                }return A.Peek();
-                
-            }
         }
     }
 }
