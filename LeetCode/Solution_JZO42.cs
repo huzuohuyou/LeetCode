@@ -11,12 +11,19 @@ namespace LeetCode
     {
         public void Test()
         {
-           
 
+            var array = new int[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
+            var s = MaxSubArray(array);
         }
         public int MaxSubArray(int[] nums)
         {
-            return 0;
+            int res = nums[0];
+            for (int i = 1; i < nums.Length; i++)
+            {
+                nums[i] += Math.Max(nums[i - 1], 0);
+                res = Math.Max(res, nums[i]);
+            }
+            return res;
 
         }
     }
