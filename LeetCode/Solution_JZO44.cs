@@ -11,28 +11,38 @@ namespace LeetCode
     {
         public void Test()
         {
-            var s = FindNthDigit(11);
+            //var s = FindNthDigit(11);
         }
-        public int FindNthDigit(int n)
+        public String MinNumber(int[] nums)
         {
-            long bitCount = 1;//n对应数字的位数
-            long start = 1;   //bitCount位的最小数
-            long count = 9;  //bitCount位中所有所有数位总和
-            long curNum = 0;  //当前数
-
-            while (n > count)
-            {
-                n -= (int)count;
-                bitCount++;
-                start *= 10;
-                count = 9 * start * bitCount;
-            }
-
-            curNum = start + (n - 1) / bitCount;//确定当前数
-            string str = curNum.ToString();
-            return str[(n - 1) % (int)bitCount] - '0';//-'0'将char转对应int值
-
+            String[] strs = new String[nums.Length];
+            for (int i = 0; i < nums.Length; i++)
+                strs[i] = nums[i].ToString();
+            fastSort(strs, 0, strs.Length - 1);
+            StringBuilder res = new StringBuilder();
+            foreach (var s in strs)
+                res.Append(s);
+            return res.ToString();
         }
+        void fastSort(String[] strs, int l, int r)
+        {
+            if (l >= r) return;
+            int i = l, j = r;
+            String tmp = strs[i];
+            while (i < j)
+            {
+                while ((strs[j] + strs[l]).CompareTo(strs[l] + strs[j]) >= 0 && i < j) j--;
+                while ((strs[i] + strs[l]).CompareTo(strs[l] + strs[i]) <= 0 && i < j) i++;
+                tmp = strs[i];
+                strs[i] = strs[j];
+                strs[j] = tmp;
+            }
+            strs[i] = strs[l];
+            strs[l] = tmp;
+            fastSort(strs, l, i - 1);
+            fastSort(strs, i + 1, r);
+        }
+
     }
 }
 
