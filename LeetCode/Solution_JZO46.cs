@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace LeetCode
 {
@@ -13,6 +14,34 @@ namespace LeetCode
         {
             var s = TranslateNum(1314);
         }
+
+        public static int TranslateNum2(TreeNode n) => n switch
+        {
+            { val: 0 } => n.val * 3,
+            { left: null } => n.val * 4,
+        };
+
+        public static async void So()
+        {
+            IAsyncEnumerable<int> list = Solution_JZO46.GetAsync();
+            await foreach (var item in list)
+            {
+
+            }
+        }
+        public static async IAsyncEnumerable<int> GetAsync()
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                await Task.Delay(100).ContinueWith(s =>
+                {
+                    Console.WriteLine("1");
+                });
+                yield return i;
+
+            }
+        }
+
         public int TranslateNum(int num)
         {
             String src = num.ToString();
