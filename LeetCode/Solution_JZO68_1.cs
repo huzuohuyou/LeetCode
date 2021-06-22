@@ -13,19 +13,29 @@ namespace LeetCode
         public void Test()
         {
 
-            var a = Add(1,2);
+            //var a = Add(1,2);
         }
 
 
-        public int Add(int a, int b)
+        public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q)
         {
-            while (b != 0)
-            { // 当进位为 0 时跳出
-                int c = (a & b) << 1;  // c = 进位
-                a ^= b; // a = 非进位和
-                b = c; // b = 进位
+            TreeNode ancestor = root;
+            while (true)
+            {
+                if (p.val < ancestor.val && q.val < ancestor.val)
+                {
+                    ancestor = ancestor.left;
+                }
+                else if (p.val > ancestor.val && q.val > ancestor.val)
+                {
+                    ancestor = ancestor.right;
+                }
+                else
+                {
+                    break;
+                }
             }
-            return a;
+            return ancestor;
         }
     }
 }
