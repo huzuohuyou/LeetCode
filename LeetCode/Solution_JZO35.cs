@@ -6,62 +6,75 @@ using System.Text;
 
 namespace LeetCode
 {
-
+    /// <summary>
+    /// 复杂链表的复制
+    /// </summary>
     public class Solution_JZO35 : ISolution
     {
 
         public void Test()
         {
-            var n5 = new TreeNode(5);
-            var n4 = new TreeNode(4);
-            n5.left = n4;
-            var n8 = new TreeNode(8);
-            n5.right = n8;
-
-            var n11 = new TreeNode(11);
-            n4.left = n11;
-            var n13 = new TreeNode(13);
-            n8.left = n13;
-            var n4_2 = new TreeNode(4);
-            n8.right = n4_2;
-
-
-            var n7 = new TreeNode(7);
-            n11.left = n7;
-            var n2 = new TreeNode(2);
-            n11.right = n2;
-            var n5_2 = new TreeNode(5);
-            n4_2.left = n5_2;
-            var n1 = new TreeNode(1);
-            n4_2.right = n1;
-
-            var r = PathSum(n5,22);
-
+            var node7 = new Node(7);
+            var node13 = new Node(13);
+            var node11 = new Node(11);
+            var node10 = new Node(10);
+            var node1 = new Node(1);
+            node7.next = node13;
+            node7.random = null;
+            node13.next = node11;
+            node13.random = node7;
+            node11.next = node10;
+            node11.random = null;
+            node10.next = node1;
+            node10.random = node11;
+            node1.next = null;
+            node1.random = node7;
+            CopyRandomList(node7);
         }
-
-
-        List<IList<int>> res = new List<IList<int>>();
-        List<int> path = new List<int>();
-        public IList<IList<int>> PathSum(TreeNode root, int sum)
+        public Node CopyRandomList(Node head)
         {
-            recur(root, sum);
-            return res;
+            if (head == null) return null;
+            Node cur = head;
+            var map = new Dictionary<Node, Node>();
+            // 3. 复制各节点，并建立 “原节点 -> 新节点” 的 Map 映射
+            while (cur != null)
+            {
+                map.Add(cur, new Node(cur.val));
+                cur = cur.next;
+            }
+            cur = head;
+            // 4. 构建新链表的 next 和 random 指向
+            while (cur != null)
+            {
+                Node curValue;
+                map.TryGetValue(cur,out curValue);
+                curValue.next = cur.next == null ? null : map[cur.next];
+                curValue.random =cur.random==null?null: map[cur.random];
+                cur = cur.next;
+            }
+            // 5. 返回新链表的头节点
+            return map[head];
         }
-        void recur(TreeNode root, int tar)
+        public class Node
         {
-            if (root == null) return;
-            path.Add(root.val);
-            tar -= root.val;
-            if (tar == 0 && root.left == null && root.right == null)
-                res.Add(new List<int>(path));
-            recur(root.left, tar);
-            recur(root.right, tar);
-            path.RemoveAt(path.Count-1);
+            public int val;
+            public Node next;
+            public Node random;
+
+            public Node(int _val)
+            {
+                val = _val;
+                next = null;
+                random = null;
+            }
+
+
+
+
+
+
+
+
         }
-
-        
-
-
     }
 }
-

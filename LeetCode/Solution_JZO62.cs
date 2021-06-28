@@ -13,7 +13,7 @@ namespace LeetCode
         public void Test()
         {
 
-            var a = LastRemaining(new int[] { 4, 7, 5, 2, 9 });
+            //var a = LastRemaining(new int[] { 4, 7, 5, 2, 9 });
         }
 
 
