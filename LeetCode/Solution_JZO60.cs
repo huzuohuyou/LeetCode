@@ -6,29 +6,37 @@ using System.Text;
 
 namespace LeetCode
 {
-
+    /// <summary>
+    /// 剑指 Offer 60. n个骰子的点数
+    /// https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/
+    /// </summary>
     public class Solution_JZO60 : ISolution
     {
         
         public void Test()
         {
-           
-            var a = MaxSlidingWindow(new int[] { 1, 3, -1, -3, 5, 3, 6, 7 },3);
+            var r = DicesProbability(2);
         }
 
 
-        public int[] MaxSlidingWindow(int[] nums, int k)
+        public double[] DicesProbability(int n)
         {
-            if (k > nums.Length || nums.Length == 0)
+            double[] dp = new double[6] { 1.0 / 6.0 , 1.0 / 6.0 ,1.0 / 6.0, 1.0 / 6.0 , 1.0 / 6.0 , 1.0 / 6.0 };
+            for (int i = 2; i <= n; i++)
             {
-                return nums;
+                double[] tmp = new double[5 * i + 1];
+                for (int j = 0; j < dp.Length; j++)
+                {
+                    for (int k = 0; k < 6; k++)
+                    {
+                        tmp[j + k] += dp[j] / 6.0;
+                    }
+                }
+                dp = tmp;
             }
-            var array = new int[nums.Length - k + 1];
-            for (int l = 0, r = l + k - 1; l < nums.Length - k + 1; l++)
-            {
-                array[l] = nums.Skip(l).Take(k).ToArray().Max();
-            }
-            return array;
+            return dp;
+
+
         }
     }
 }
