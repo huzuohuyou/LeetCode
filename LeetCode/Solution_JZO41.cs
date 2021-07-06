@@ -6,49 +6,130 @@ using System.Text;
 
 namespace LeetCode
 {
-
+    /// <summary>
+    /// 剑指 Offer 41. 数据流中的中位数
+    /// https://leetcode-cn.com/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/
+    /// </summary>
     public class Solution_JZO41 : ISolution
     {
         public void Test()
         {
-           
 
+            MedianFinder obj = new MedianFinder();
+            obj.AddNum(1);
+            obj.AddNum(2);
+            double param_2 = obj.FindMedian();
         }
-        void quick_sort(int[] s, int l, int r)
+        public class MedianFinder
         {
-            if (l < r)
+
+            class Heap<T>
             {
-                //Swap(s[l], s[(l + r) / 2]); //将中间的这个数和第一个数交换 参见注1
-                int i = l, j = r, x = s[l];
-                while (i < j)
+                private List<T> list;
+                private Func<T, T, int> comparer;
+                internal Heap(Func<T, T, int> comparer)
                 {
-                    while (i < j && s[j] >= x) // 从右向左找第一个小于x的数
-                        j--;
-                    if (i < j)
-                        s[i++] = s[j];
-
-                    while (i < j && s[i] < x) // 从左向右找第一个大于等于x的数
-                        i++;
-                    if (i < j)
-                        s[j--] = s[i];
+                    this.list = new List<T>();
+                    this.comparer = comparer;
                 }
-                s[i] = x;
-                quick_sort(s, l, i - 1); // 递归调用 
-                quick_sort(s, i + 1, r);
-            }
-        }
+                internal int Count { get => this.list.Count; }
 
-        public int[] GetLeastNumbers(int[] arr, int k)
-        {
-            if (k == 0 || arr.Length == 0)
+                private bool PriorThan(int i, int j)
+                {
+                    return this.comparer(this.list[i], this.list[j]) < 0;
+                }
+                private void SwapByIndex(int i, int j)
+                {
+                    var temp = this.list[i];
+                    this.list[i] = this.list[j];
+                    this.list[j] = temp;
+                }
+
+                internal void En(T v)
+                {
+                    // 添加到末尾
+                    this.list.Add(v);
+                    // 调整堆结构
+                    int curI = this.list.Count - 1;
+                    int parentI = this.list.Count / 2 - 1;
+                    while (curI > 0)
+                    {
+                        if (this.PriorThan(curI, parentI))
+                        {
+                            this.SwapByIndex(curI, parentI);
+                            curI = parentI;
+                            parentI = (curI + 1) / 2 - 1;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+                internal T De()
+                {
+                    // 取堆顶
+                    T result = this.list[0];
+                    // 调整堆结构
+                    this.list[0] = this.list[this.list.Count - 1];
+                    this.list.RemoveAt(this.list.Count - 1);
+                    int curI = 0;
+                    while (curI < this.list.Count)
+                    {
+                        int leftChildI = curI * 2 + 1;
+                        int rightChildI = leftChildI + 1;
+                        int nextI = curI;
+                        if (leftChildI < this.list.Count) nextI = this.PriorThan(leftChildI, curI) ? leftChildI : curI;
+                        if (rightChildI < this.list.Count) nextI = this.PriorThan(rightChildI, nextI) ? rightChildI : nextI;
+                        if (nextI == curI) break;
+                        else
+                        {
+                            this.SwapByIndex(curI, nextI);
+                            curI = nextI;
+                        }
+                    }
+                    // 返回堆顶
+                    return result;
+                }
+                internal T Peek()
+                {
+                    return this.list[0];
+                }
+            }
+
+            Heap<int> minHeap = null;
+            Heap<int> maxHeap = null; // 保持大堆元素数等小堆，或者比小堆多一
+            bool isOdd = false;
+
+            /** initialize your data structure here. */
+            public MedianFinder()
             {
-                return new int[0];
+                this.minHeap = new Heap<int>((a, b) => (a - b));
+                this.maxHeap = new Heap<int>((a, b) => (b - a));
             }
-            quick_sort(arr, 0, arr.Length-1);
-            // 最后一个参数表示我们要找的是下标为k-1的数
-            return arr.Take(k).ToArray();
 
+            public void AddNum(int num)
+            {
+                if (this.isOdd)
+                {
+                    this.maxHeap.En(num);
+                    this.minHeap.En(this.maxHeap.De());
+                }
+                else
+                {
+                    this.minHeap.En(num);
+                    this.maxHeap.En(this.minHeap.De());
+                }
+                this.isOdd = !this.isOdd;
+            }
+
+            public double FindMedian()
+            {
+                return this.isOdd ? this.maxHeap.Peek() : ((double)(this.maxHeap.Peek() + this.minHeap.Peek())) / 2;
+            }
         }
+
+
     }
 }
 
