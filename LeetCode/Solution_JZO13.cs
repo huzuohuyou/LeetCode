@@ -13,51 +13,60 @@ namespace LeetCode
         {
             var f = MovingCount(2, 3, 1);
         }
-        int count = 0;
+        private int m;
+
+        private int n;
+
+        private int k;
+
+        private int total;
+
+        private bool[,] check;
+
+
         public int MovingCount(int m, int n, int k)
         {
-            for (int i = 0; i < m; i++)
+            if (m == 0 || n == 0)
             {
-                for (int j = 0; j < n; j++)
-                {
-                    if (dfs(m, n, i, j, k))
-                    {
-                        count++;
-                    }
-                }
+                return 0;
             }
 
-            return count;
+            this.m = m;
+            this.n = n;
+            this.k = k;
+            check = new bool[m, n];
+
+
+            dfs(0, 0);
+            return total;
         }
-        int GetSum(int x)
+
+        public void dfs(int x, int y)
         {
-            var sum = 0;
-            foreach (var item in x.ToString())
+            if (x >= m || y >= n || Sum(x) + Sum(y) > k || check[x, y])
             {
-                sum += int.Parse(item.ToString());
+                return;
             }
-            return sum;
+
+            check[x, y] = true;
+
+            total++;
+
+            dfs(x + 1, y);
+            dfs(x, y + 1);
         }
-        public bool dfs(int m, int n, int x, int y, int k)
+
+        public int Sum(int input)
         {
-            if (x < 0 || x > m || y < 0 || y > n || (GetSum(x) + GetSum(y)) > k)
+            int result = 0;
+            while (input > 0)
             {
-                return false;
+                var yushu = input % 10;
+                result += yushu;
+                input = input / 10;
             }
 
-            if ((GetSum(x) + GetSum(y)) <= k)
-            {
-                return true;
-
-            };
-            if (dfs(m,n,x-1,y,k)
-                || dfs(m, n, x+1, y, k) 
-                || dfs(m, n, x, y-1, k) 
-                || dfs(m, n, x, y+1, k))
-            {
-
-            }
-            return false;
+            return result;
         }
     }
 }
